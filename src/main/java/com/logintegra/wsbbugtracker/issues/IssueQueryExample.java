@@ -65,8 +65,9 @@ public class IssueQueryExample {
         // Warunki
         Predicate isToDo = builder.equal(issueRoot.get("state"), State.TODO);
         Predicate projectIsABC = builder.equal(issueRoot.get("project"), projectRepository.findByName("ABC"));
+        Predicate isToDoAndProjectIsABC = builder.and(isToDo, projectIsABC);
 
-        TypedQuery<Issue> typedQuery = entityManager.createQuery(select.where(builder.and(isToDo, projectIsABC)));
+        TypedQuery<Issue> typedQuery = entityManager.createQuery(select.where(isToDoAndProjectIsABC));
         List<Issue> issues = typedQuery.getResultList();
 
         return issues;

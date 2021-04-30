@@ -24,12 +24,12 @@ public class IssueQueryExample {
     }
 
     public List<Issue> findAll() {
-        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaBuilder builder = entityManager.getCriteriaBuilder();
 
-        CriteriaQuery<Issue> cq = cb.createQuery(Issue.class);
+        CriteriaQuery<Issue> query = builder.createQuery(Issue.class);
 
-        Root<Issue> issueRoot = cq.from(Issue.class);
-        CriteriaQuery<Issue> select = cq.select(issueRoot);
+        Root<Issue> issueRoot = query.from(Issue.class);
+        CriteriaQuery<Issue> select = query.select(issueRoot);
 
         TypedQuery<Issue> typedQuery = entityManager.createQuery(select);
         List<Issue> issues = typedQuery.getResultList();

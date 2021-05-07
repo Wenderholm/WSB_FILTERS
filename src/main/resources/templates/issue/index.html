@@ -21,8 +21,10 @@
     <h3 th:text="#{nav.issues}" class="pb-3"></h3>
 
     <div th:each="issue : ${issues}">
-        <span th:text="${issue.id}"></span>
-        <span th:text="${issue.title}"></span>
+        <span th:text="${issue.id}"></span> |
+        <span th:text="${issue.project.name}"></span> |
+        <span th:text="${issue.title}"></span> |
+        <span th:if="${issue.assignee != null}" th:text="${issue.assignee.name}"></span>
     </div>
 </section>
 
